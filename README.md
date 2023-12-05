@@ -1,5 +1,4 @@
-# AWS-RDS-Postgres-Demo
-### - AWS RDS (PostgreSQL)
+# Postgres-Demo
 ### - Node
 ### - Express
 ### - Node-Postgres
