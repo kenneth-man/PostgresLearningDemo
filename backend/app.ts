@@ -1,8 +1,8 @@
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
-import xss from 'xss-clean'
 import config from 'config'
+import allRouter from './routes/all'
 
 const app = express()
 
@@ -26,7 +26,6 @@ app.use(
 	})
 )
 
-// data sanitization against XSS (Cross Site Scripting) attacks
-app.use(xss())
+app.use('/all/', allRouter)
 
 export default app;
