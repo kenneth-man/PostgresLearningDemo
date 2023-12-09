@@ -1,7 +1,6 @@
 import config from 'config'
 import app from './app'
 import pg from 'pg'
-import { tryCatch } from './handlers/tryCatch'
 
 export const client = new pg.Client({
 	host: config.get('PG.config.host'),
@@ -9,11 +8,11 @@ export const client = new pg.Client({
 	database: config.get('PG.config.name'),
 	user: config.get('PG.config.userName'),
 	password: config.get('PG.config.password'),
-})
+});
 
-tryCatch(async () => await client.connect())
+(async () => await client.connect())()
 
-const server = app.listen(
+app.listen(
 	config.get('BACKEND.config.port'),
 	async () => {
 		console.log(`App running on port: ${config.get('BACKEND.config.port')}`)
@@ -22,18 +21,7 @@ const server = app.listen(
 	}
 )
 
-process.on(
-	'unhandledRejection',
-	(err) => {
-		console.log(`${err}. Exiting application`)
-
-		// callback ran after server is closed
-		server.close(() => process.exit(1))
-	}
-)
-
-
-
 // TODO
-// - figure out paramaterized queries in node-postgres
-// - test if any hanging if failed response/error thrown in postman (e.g. using res.status(400)... is reusable functions)
+// - error codes and messages to reusable functions mapped to postgres error codes https://www.postgresql.org/docs/12/errcodes-appendix.html
+// - call endpoints from frontend
+// - more endpoints + see if can add more complex ones

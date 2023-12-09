@@ -1,8 +1,9 @@
-export const tryCatch = (callback: Function) => {
+import { Response } from 'express'
+
+export const tryCatch = async (callback: Function, res: Response) => {
 	try {
-		callback()
+		await callback()
 	} catch(e: any) {
-		if(e.message) throw new Error(e)
-		throw new Error('Something went wrong')
+		return res.status(400).json({ error: e.message || 'Something went wrong' })
 	}
 }
