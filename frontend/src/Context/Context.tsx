@@ -3,12 +3,18 @@ import {
 	createContext,
 } from 'react'
 import { IContextStateProps } from './IContextStateProps'
+import { fetchApi } from '../api/base'
 
 export const Context: AppContext<
-	IContextStateProps | undefined
-> = createContext<IContextStateProps | undefined>(undefined)
+	IContextStateProps | null
+> = createContext<IContextStateProps | null>(null)
 
 const ContextProvider = () => {
+	(async () => {
+		const res = await fetchApi('/all/test/1')
+		console.log(res)
+	})()
+
 	return (
 		<Context.Provider
 			value={{}}

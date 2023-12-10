@@ -22,5 +22,5 @@ app.listen(
 )
 
 // TODO
-// - call endpoints from frontend
-// - more endpoints + see if can add more complex ones
+// - more endpoints + see if can add more complex ones (e.g. freetext query but prevent mutatating operations like fauna playground)
+// - build some basic frontend ui to call endpoints

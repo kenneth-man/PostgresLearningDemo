@@ -2,9 +2,13 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import config from 'config'
+import cors from 'cors'
 import allRouter from './routes/all'
 
 const app = express()
+
+// Enable CORS; allow requests from any domain (e.g. localhost:3000)
+app.use(cors());
 
 // adding Security HTTP Headers to req and res
 app.use(helmet())
