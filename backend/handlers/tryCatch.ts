@@ -11,11 +11,13 @@ export const tryCatch = async (callback: Function, res: Response) => {
 			code = 'N/A'
 		} = e
 
-		return res.status(500).json({
-			severity: severity,
-			message,
-			code,
-			postgresErrorDocs
-		})
+		return res
+			.status(500)
+			.json({
+				severity,
+				message,
+				code,
+				postgresErrorDocs
+			})
 	}
 }
