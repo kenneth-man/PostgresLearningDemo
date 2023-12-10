@@ -4,6 +4,18 @@ export const tryCatch = async (callback: Function, res: Response) => {
 	try {
 		await callback()
 	} catch(e: any) {
-		return res.status(400).json({ error: e.message || 'Something went wrong' })
+		const postgresErrorDocs = 'https://www.postgresql.org/docs/12/errcodes-appendix.html'
+		const {
+			severity = 'ERROR',
+			message = 'Something went wrong',
+			code = 'N/A'
+		} = e
+
+		return res.status(500).json({
+			severity: severity,
+			message,
+			code,
+			postgresErrorDocs
+		})
 	}
 }

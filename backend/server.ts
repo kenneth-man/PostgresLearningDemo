@@ -22,6 +22,5 @@ app.listen(
 )
 
 // TODO
-// - error codes and messages to reusable functions mapped to postgres error codes https://www.postgresql.org/docs/12/errcodes-appendix.html
 // - call endpoints from frontend
 // - more endpoints + see if can add more complex ones
