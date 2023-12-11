@@ -1,13 +1,14 @@
 import { Response } from 'express'
 import { IReqParams } from '../models/interfaces'
 import { client } from '../server'
-import { tryCatch } from './tryCatch'
+import { tryCatch } from '../helpers/tryCatch'
+import { checkMissingParams } from '../helpers/checkMissingParams'
 
-export const getAllById = async (req: IReqParams, res: Response) =>
+export const getById = async (req: IReqParams, res: Response) =>
 	await tryCatch(async () => {
 		const { db, id } = req.params
 
-		if (!db || !id) throw new Error('Missing parameters')
+		checkMissingParams([db, id])
 
 		const result = await client.query(`SELECT * FROM ${db} WHERE id = ${id}`)
 

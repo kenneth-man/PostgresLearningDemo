@@ -3,7 +3,8 @@ import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import config from 'config'
 import cors from 'cors'
-import allRouter from './routes/all'
+import wildCardRouter from './routes/wildCard'
+import tablesRouter from './routes/tables'
 
 const app = express()
 
@@ -30,6 +31,7 @@ app.use(
 	})
 )
 
-app.use('/all/', allRouter)
+app.use('/wildCard/', wildCardRouter)
+app.use('/tables/', tablesRouter)
 
 export default app;

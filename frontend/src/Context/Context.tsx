@@ -11,7 +11,7 @@ export const Context: AppContext<
 
 const ContextProvider = () => {
 	(async () => {
-		const res = await fetchApi('/all/test/1')
+		const res = await fetchApi('/wildCard/test/1')
 		console.log(res)
 	})()
 
