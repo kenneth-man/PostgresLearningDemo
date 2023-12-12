@@ -22,5 +22,8 @@ app.listen(
 )
 
 // TODO
-// - more endpoints + see if can add more complex ones (e.g. freetext query but prevent mutatating operations like fauna playground)
+// - `getOrderedBy` endpoint - add the ability to add any number of query params which are parameterized using WHERE
+// - more endpoints + see if can add more complex ones
+//    - e.g. freetext query but prevent mutatating operations like fauna playground
+//    - e.g. delete, post, put (require auth?)
 // - build some basic frontend ui to call endpoints

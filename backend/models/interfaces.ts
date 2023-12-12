@@ -1,8 +1,8 @@
-import { Request } from 'express'
-
-export type IReqParams = Request & {
+export interface IReqParams {
 	params: {
-		db: string
+		table: string
 		id: string
+		column: string
+		direction: 'ASC' | 'DESC'
 	}
 }

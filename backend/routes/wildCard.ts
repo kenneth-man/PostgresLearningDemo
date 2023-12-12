@@ -1,9 +1,10 @@
 import express from 'express'
-import { getById } from '../handlers/wildCard'
+import { getById, getOrderedBy } from '../handlers/wildCard'
 
 const router = express.Router()
 
 router
-	.get('/:db/:id', getById)
+	.get('/:table/:id', getById)
+	.get('/:table/:column/:direction', getOrderedBy)
 
 export default router

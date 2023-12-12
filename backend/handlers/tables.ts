@@ -1,10 +1,10 @@
-import { Response } from 'express'
-import { IReqParams } from '../models/interfaces'
+import { Request, Response } from 'express'
+import { GetTableReq } from '../models/types'
 import { client } from '../server'
 import { tryCatch } from '../helpers/tryCatch'
 import { checkMissingParams } from '../helpers/checkMissingParams'
 
-export const getTables = async (_: IReqParams, res: Response) =>
+export const getTables = async (_: Request, res: Response) =>
 	await tryCatch(async () => {
 		const result = await client.query(`
 			SELECT table_schema,table_name
@@ -12,20 +12,22 @@ export const getTables = async (_: IReqParams, res: Response) =>
 			ORDER BY table_schema,table_name
 		`)
 
+		const publicTables = result.rows.filter((table) => table.table_schema === 'public')
+
 		return res
 			.status(200)
-			.json(result.rows)
+			.json(publicTables)
 	}, res)
 
-export const getTable = async (req: IReqParams, res: Response) =>
+export const getTable = async (req: GetTableReq, res: Response) =>
 	await tryCatch(async () => {
-		const { db } = req.params
+		const { table } = req.params
 
-		checkMissingParams([db])
+		checkMissingParams([table])
 
 		const result = await client.query(`
 			SELECT *
-			FROM ${db}
+			FROM ${table}
 		`)
 
 		return res

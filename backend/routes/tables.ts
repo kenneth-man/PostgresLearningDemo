@@ -5,6 +5,6 @@ const router = express.Router()
 
 router
 	.get('/', getTables)
-	.get('/:db', getTable)
+	.get('/:table', getTable)
 
 export default router
