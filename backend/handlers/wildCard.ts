@@ -3,6 +3,7 @@ import { GetByIdReq, GetOrderedByReq } from '../models/types'
 import { client } from '../server'
 import { tryCatch } from '../helpers/tryCatch'
 import { checkMissingParams } from '../helpers/checkMissingParams'
+import { convertQueryParams } from '../helpers/convertQueryParams'
 
 export const getById = async (req: GetByIdReq, res: Response) =>
 	await tryCatch(async () => {
@@ -29,7 +30,7 @@ export const getOrderedBy = async (req: GetOrderedByReq, res: Response) =>
 
 		if (upperCaseDirection !== 'ASC' && upperCaseDirection !== 'DESC') throw new Error('Invalid direction')
 
-		const result = await client.query(`SELECT * FROM ${table} ORDER BY ${column} ${upperCaseDirection}`)
+		const result = await client.query(`SELECT * FROM ${table} ${convertQueryParams(req.query)} ORDER BY ${column} ${upperCaseDirection}`)
 
 		return res
 			.status(200)
