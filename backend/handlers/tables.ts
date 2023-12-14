@@ -2,7 +2,6 @@ import { Request, Response } from 'express'
 import { GetTableReq } from '../models/types'
 import { client } from '../server'
 import { tryCatch } from '../helpers/tryCatch'
-import { checkMissingParams } from '../helpers/checkMissingParams'
 
 export const getTables = async (_: Request, res: Response) =>
 	await tryCatch(async () => {
@@ -22,8 +21,6 @@ export const getTables = async (_: Request, res: Response) =>
 export const getTable = async (req: GetTableReq, res: Response) =>
 	await tryCatch(async () => {
 		const { table } = req.params
-
-		checkMissingParams([table])
 
 		const result = await client.query(`
 			SELECT *

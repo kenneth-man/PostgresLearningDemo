@@ -4,7 +4,7 @@ import { getById, getOrderedBy } from '../handlers/wildCard'
 const router = express.Router()
 
 router
-	.get('/:table/:id', getById)
-	.get('/:table/:column/:direction', getOrderedBy)
+	.get('/getById/:table/:id', getById)
+	.get('/getOrderedBy/:table/:column/:direction?', getOrderedBy)
 
 export default router

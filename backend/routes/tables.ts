@@ -4,7 +4,7 @@ import { getTables, getTable } from '../handlers/tables'
 const router = express.Router()
 
 router
-	.get('/', getTables)
-	.get('/:table', getTable)
+	.get('/getTables/', getTables)
+	.get('/getTable/:table', getTable)
 
 export default router

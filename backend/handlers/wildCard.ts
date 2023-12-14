@@ -4,12 +4,11 @@ import { client } from '../server'
 import { tryCatch } from '../helpers/tryCatch'
 import { checkMissingParams } from '../helpers/checkMissingParams'
 import { convertQueryParams } from '../helpers/convertQueryParams'
+import { Direction } from '../models/types'
 
 export const getById = async (req: GetByIdReq, res: Response) =>
 	await tryCatch(async () => {
 		const { table, id } = req.params
-
-		checkMissingParams([table, id])
 
 		// Databases generally don't let you use placeholders for identifiers (table names, column names, ...)
 		// so not using a placeholder for the table name here is fine
@@ -22,13 +21,13 @@ export const getById = async (req: GetByIdReq, res: Response) =>
 
 export const getOrderedBy = async (req: GetOrderedByReq, res: Response) =>
 	await tryCatch(async () => {
-		const { table, column, direction } = req.params
+		const { table, column, direction = 'DESC' } = req.params
 
 		const upperCaseDirection = direction.toUpperCase()
 
-		checkMissingParams([table, upperCaseDirection])
-
-		if (upperCaseDirection !== 'ASC' && upperCaseDirection !== 'DESC') throw new Error('Invalid direction')
+		if (!Direction.safeParse(upperCaseDirection).success) {
+			throw new Error('Invalid direction - Must be either `ASC` or `DESC`')
+		}
 
 		const result = await client.query(`SELECT * FROM ${table} ${convertQueryParams(req.query)} ORDER BY ${column} ${upperCaseDirection}`)
 

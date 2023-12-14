@@ -1,3 +1,4 @@
+// @ts-ignore
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
@@ -5,6 +6,7 @@ import config from 'config'
 import cors from 'cors'
 import wildCardRouter from './routes/wildCard'
 import tablesRouter from './routes/tables'
+import postRouter from './routes/post'
 
 const app = express()
 
@@ -33,5 +35,6 @@ app.use(
 
 app.use('/wildCard/', wildCardRouter)
 app.use('/tables/', tablesRouter)
+app.use('/insert/', postRouter)
 
 export default app;
