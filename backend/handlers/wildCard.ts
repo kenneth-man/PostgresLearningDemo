@@ -2,7 +2,6 @@ import { Response } from 'express'
 import { GetByIdReq, GetOrderedByReq } from '../models/types'
 import { client } from '../server'
 import { tryCatch } from '../helpers/tryCatch'
-import { checkMissingParams } from '../helpers/checkMissingParams'
 import { convertQueryParams } from '../helpers/convertQueryParams'
 import { Direction } from '../models/types'
 
