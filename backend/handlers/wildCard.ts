@@ -4,6 +4,7 @@ import { client } from '../server'
 import { tryCatch } from '../helpers/tryCatch'
 import { convertQueryParams } from '../helpers/convertQueryParams'
 import { Direction } from '../models/types'
+import { badRequestResponse } from '../helpers/errorResponses'
 
 export const getById = async (req: GetByIdReq, res: Response) =>
 	await tryCatch(async () => {
@@ -25,7 +26,7 @@ export const getOrderedBy = async (req: GetOrderedByReq, res: Response) =>
 		const upperCaseDirection = direction.toUpperCase()
 
 		if (!Direction.safeParse(upperCaseDirection).success) {
-			throw new Error('Invalid direction - Must be either `ASC` or `DESC`')
+			return badRequestResponse(res, 'Invalid direction - Must be either `ASC` or `DESC`')
 		}
 
 		const result = await client.query(`SELECT * FROM ${table} ${convertQueryParams(req.query)} ORDER BY ${column} ${upperCaseDirection}`)

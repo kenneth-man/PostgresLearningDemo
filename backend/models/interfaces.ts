@@ -11,16 +11,22 @@ export const IReqParams = z.object({
 })
 
 export const ICustomer = z.object({
-	id: z.string(),
-	first_name: z.string(),
-	last_name: z.string(),
-	email: z.string(),
-	ip_address: z.string(),
-	sex: Sex,
-	pet: z.string(),
-	education: z.string(),
-	phrase: z.string(),
-	company: z.string(),
-	car: z.string(),
-	fav_colour: z.string(),
+	id: z.string().nullable(),
+	first_name: z.string().nullable(),
+	last_name: z.string().nullable(),
+	email: z.string().nullable(),
+	ip_address: z.string().nullable(),
+	sex: Sex.nullable(),
+	pet: z.string().nullable(),
+	education: z.string().nullable(),
+	phrase: z.string().nullable(),
+	company: z.string().nullable(),
+	car: z.string().nullable(),
+	fav_colour: z.string().nullable(),
+})
+
+export const ITest = z.object({
+	id: z.string().nullable(),
+	first_name: z.string().nullable(),
+	last_name: z.string().nullable(),
 })

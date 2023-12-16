@@ -4,6 +4,6 @@ import { insertRow } from '../handlers/post'
 const router = express.Router()
 
 router
-	.post('/row', insertRow)
+	.post('/row/:table', insertRow)
 
 export default router
