@@ -23,7 +23,9 @@ app.listen(
 
 // TODO
 // - add delete, post, patch, put endpoints
+// - use safeParse to validate zod interfaces based on table name in req.params? enum?
+
 // - build some basic frontend ui to call endpoints
 // - add more complex endpoints (see - https://www.w3schools.com/sql/default.asp)
 //    - e.g. freetext query but prevent mutatating operations like fauna playground
-//    - e.g. delete, post, put (require auth?)
+//    - e.g. delete, post, put, patch (require auth as middleware in the route?)

@@ -1,16 +1,15 @@
 import { Response } from 'express'
 import { client } from '../server'
+import { DeleteRowByIdReq } from '../models/types'
 import { tryCatch } from '../helpers/tryCatch'
-import { DeleteRowById } from '../models/types'
 import { badRequestResponse } from '../helpers/errorResponses'
+import { rowExistsById } from '../helpers/rowExistsById'
 
-export const deleteRowById = async (req: DeleteRowById, res: Response) =>
+export const deleteRowById = async (req: DeleteRowByIdReq, res: Response) =>
 	await tryCatch(async () => {
 		const { table, id } = req.params
-
-		const { rowCount } = await client.query(`SELECT FROM ${table} WHERE id = $1`, [id])
 		
-		if(rowCount === 0) {
+		if(!await rowExistsById(table, id)) {
 			return badRequestResponse(res, `No row found to delete with "id": ${id}`)
 		}
 

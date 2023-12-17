@@ -8,6 +8,7 @@ import wildCardRouter from './routes/wildCard'
 import tablesRouter from './routes/tables'
 import postRouter from './routes/post'
 import deleteRouter from './routes/delete'
+import patchRouter from './routes/patch'
 
 const app = express()
 
@@ -36,7 +37,8 @@ app.use(
 
 app.use('/wildCard/', wildCardRouter)
 app.use('/tables/', tablesRouter)
-app.use('/insert/', postRouter)
-app.use('/delete/', deleteRouter)
+app.use('/insert/', postRouter) // POST
+app.use('/delete/', deleteRouter) // DELETE
+app.use('/update', patchRouter) // PATCH
 
 export default app;
