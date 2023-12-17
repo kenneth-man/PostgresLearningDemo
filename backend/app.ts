@@ -7,6 +7,7 @@ import cors from 'cors'
 import wildCardRouter from './routes/wildCard'
 import tablesRouter from './routes/tables'
 import postRouter from './routes/post'
+import deleteRouter from './routes/delete'
 
 const app = express()
 
@@ -36,5 +37,6 @@ app.use(
 app.use('/wildCard/', wildCardRouter)
 app.use('/tables/', tablesRouter)
 app.use('/insert/', postRouter)
+app.use('/delete/', deleteRouter)
 
 export default app;
