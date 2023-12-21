@@ -1,0 +1,8 @@
+export const homeRoute = '/'
+export const wildCardRoute = '/wildCard'
+export const tablesRoute = '/tables'
+export const deleteRoute = '/delete'
+export const updateRoute = '/patch'
+export const insertRoute = '/post'
+export const replaceRoute = '/put'
+export const fourZeroFourRoute = '*'
