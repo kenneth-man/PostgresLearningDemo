@@ -3,11 +3,12 @@ import './Page.css'
 
 const Page = ({
 	children,
+	className,
 	styles
 }: IPageProps) => {
 	return (
 		<div
-			className='page'
+			className={`page ${className}`}
 			style={styles}
 		>
 			{children}

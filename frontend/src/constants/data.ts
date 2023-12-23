@@ -1,7 +1,7 @@
 import { IBoxRouteProps } from '../models/interfaces';
 import { deleteRoute, insertRoute, replaceRoute, tablesRoute, updateRoute, wildCardRoute } from './strings';
 
-export const wildCardRoutes: IBoxRouteProps[] = [
+export const homeRoutes: IBoxRouteProps[] = [
 	{
 		title: 'WildCard',
 		route: wildCardRoute

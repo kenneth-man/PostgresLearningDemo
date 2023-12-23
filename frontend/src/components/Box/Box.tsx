@@ -1,15 +1,34 @@
 import './Box.css'
-import { IBoxProps } from './IBoxProps'
+import { boxProps } from './IBoxProps'
 
 const Box = ({
 	children,
+	justifyContent = 'space-evenly',
+	alignItems = 'center',
 	type = 'flex',
-	styles
-}: IBoxProps) => {
+	styles,
+	...props
+}: boxProps) => {
+	let gridTemplate = {}
+
+	if ('cols' in props) {
+		gridTemplate = {
+			gridTemplateColumns: `repeat(${props.cols}, 1fr)`,
+			gridTemplateRows: `repeat(${props.rows}, 1fr)`,
+			justifyItems: props.justifyItems,
+			alignContent: props.alignContent
+		}
+	}
+	
 	return (
 		<div
-			className={type}
-			style={styles}
+			className={`space-y-4 ${type}`}
+			style={{
+				justifyContent,
+				alignItems,
+				...gridTemplate,
+				...styles
+			}}
 		>
 			{children}
 		</div>
